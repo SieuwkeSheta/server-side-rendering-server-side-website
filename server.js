@@ -7,11 +7,15 @@ import { Liquid } from 'liquidjs';
 
 
 console.log('Hieronder moet je waarschijnlijk nog wat veranderen')
+
+const params = {
+  'fields': '*.*',
+}
 // Doe een fetch naar de data die je nodig hebt
-// const apiResponse = await fetch('...')
+const apiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_group?' + new URLSearchParams(params))
 
 // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
-// const apiResponseJSON = await apiResponse.json()
+const apiResponseJSON = await apiResponse.json()
 
 // Controleer eventueel de data in je console
 // (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
