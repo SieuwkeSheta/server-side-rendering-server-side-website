@@ -46,6 +46,19 @@ app.get('/', async function (request, response) {
   // Geef hier eventueel data aan mee
   response.render('index.liquid')
 })
+
+// Maak een GET route voor de Groups
+app.get('/groups', async function (request, response) {
+
+  const groupListsapiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_group?fields=name,snappmap.snappthis_snapmap_uuid.*&fields=count(users)')
+
+  // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
+  const groupListsapiResponseJSON = await groupListsapiResponse.json()
+
+  // Geef hier eventueel data aan mee
+  response.render('groups.liquid', { Grouplists: groupListsapiResponseJSON.data })
+})
+
 })
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
