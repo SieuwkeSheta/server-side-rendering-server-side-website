@@ -59,6 +59,15 @@ app.get('/groups', async function (request, response) {
   response.render('groups.liquid', { Grouplists: groupListsapiResponseJSON.data })
 })
 
+app.get('/groups/:name', async function (request, response) {
+
+  // // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
+  const snappMapsapiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_group/?fields=*.*,snappmap.snappthis_snapmap_uuid.*&filter[name]=' + request.params.name)
+
+  const snappMapsapiResponseJSON = await snappMapsapiResponse.json()
+
+  // Geef hier eventueel data aan mee
+  response.render('snappmaps.liquid', { snappMapslists: snappMapsapiResponseJSON.data })
 })
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
