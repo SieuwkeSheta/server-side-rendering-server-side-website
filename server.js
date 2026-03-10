@@ -86,6 +86,15 @@ app.get('/snappmaps/:name', async function (request, response) {
   // Geef hier eventueel data aan mee
   response.render('one-snappmap.liquid', { OneSnappMappInfos: OneSnappMappInfoApiResponseJSON.data })
 })
+
+// Maak een GET route voor alle snapps in de database
+app.get('/snapps', async function (request, response) {
+
+  const MultipleSnappsApiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.groups.snappthis_group_uuid.name&filter[picture][_neq]=null')
+  const MultipleSnappsApiResponseJSON = await MultipleSnappsApiResponse.json()
+
+  // Geef hier eventueel data aan mee
+  response.render('snapps.liquid', { MultipleSnapps: MultipleSnappsApiResponseJSON.data })
 })
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
