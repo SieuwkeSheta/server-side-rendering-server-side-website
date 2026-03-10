@@ -97,6 +97,35 @@ app.get('/snapps', async function (request, response) {
   response.render('snapps.liquid', { MultipleSnapps: MultipleSnappsApiResponseJSON.data })
 })
 
+// Maak een GET route voor one-snapp in de database
+app.get('/snapps/:uuid', async function (request, response) {
+
+  // Data van one-snapp in de database
+  const OneSnappApiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.name,snapmap.groups.snappthis_group_uuid.name,author.*&filter[uuid]=' + request.params.uuid)
+  const OneSnappApiResponseJSON = await OneSnappApiResponse.json()
+
+  // Data van alle likes per one-snapp in de database
+  const LikesCountApiResponse = await fetch ('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.name,snapmap.groups.snappthis_group_uuid.name,author.*,actions.action&deep[actions][_filter][action][_eq]=like&filter[uuid]=' + request.params.uuid)
+  const LikesCountApiResponseJSON = await LikesCountApiResponse.json()
+
+  // Data van alle dislikes per one-snapp in de database
+  const TomatoCountApiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.name,snapmap.groups.snappthis_group_uuid.name,author.*,actions.action&deep[actions][_filter][action][_eq]=tomato&filter[uuid]=' + request.params.uuid)
+  const TomatoCountApiResponseJSON = await TomatoCountApiResponse.json()
+
+  // Data van alle stars per one-snapp in de database
+  const StarCountApiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.name,snapmap.groups.snappthis_group_uuid.name,author.*,actions.action&deep[actions][_filter][action][_eq]=star&filter[uuid]=' + request.params.uuid)
+  const StarCountApiResponseJSON = await StarCountApiResponse.json()
+
+  // Geef hier eventueel data aan mee
+  response.render('one-snapp.liquid', { 
+    OneSnapps: OneSnappApiResponseJSON.data, 
+    Likescounts: LikesCountApiResponseJSON.data,
+    Tomatocounts: TomatoCountApiResponseJSON.data,
+    Starcounts: StarCountApiResponseJSON.data
+   })
+})
+
+
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
 app.post('/', async function (request, response) {
