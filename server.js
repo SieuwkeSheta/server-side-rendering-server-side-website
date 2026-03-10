@@ -47,13 +47,11 @@ app.get('/', async function (request, response) {
   response.render('index.liquid')
 })
 
-// Maak een GET route voor de Groups
+// Maak een GET route voor alle Groups in de database
 app.get('/groups', async function (request, response) {
 
-  const groupListsapiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_group?fields=name,snappmap.snappthis_snapmap_uuid.*&fields=count(users)')
-
-  // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
-  const groupListsapiResponseJSON = await groupListsapiResponse.json()
+  const MultipleGroupslistapiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_group?fields=name,snappmap.snappthis_snapmap_uuid.*&fields=count(users)')
+  const MultipleGroupslistapiResponseJSON = await MultipleGroupslistapiResponse.json()
 
   // Geef hier eventueel data aan mee
   response.render('groups.liquid', { Grouplists: groupListsapiResponseJSON.data })
