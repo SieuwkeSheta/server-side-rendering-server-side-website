@@ -1,14 +1,3 @@
 {% render 'partials/head.liquid', title: 'Home', Home: true%}
-    {% comment %} {% for snappthis_group in snappthis_groups %}
-    <ul>
-    <li>{{ snappthis_group.name}}</li>
-    <li>{{ snappthis_group.snappmap.0.snappthis_snapmap_uuid.name}}</li>
-    </ul>
-    {% endfor %}
-
-{{ snappthis_groups | json }} {% endcomment %}
-
-
-{% comment %} {{ snappthis_group |json }} {% endcomment %}
 
 {% render 'partials/foot.liquid', Home: true %}
