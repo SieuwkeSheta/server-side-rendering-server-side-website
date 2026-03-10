@@ -1,0 +1,17 @@
+{% render 'partials/head.liquid', title: 'Snapps', MultipleSnapps: true%}
+
+{% comment %} {{ MultipleSnapps | json }} {% endcomment %}
+
+{% for OneSnapp in MultipleSnapps %}
+    <ul>
+        <li>
+            <a href="/snapps/{{ OneSnapp.uuid }}">
+            <img src="https://fdnd-agency.directus.app/assets/{{ OneSnapp.picture }}?width=500" alt="" width="150">
+            {{ OneSnapp.uuid }}
+            </a>
+        </li>
+    </ul>
+{% endfor %}
+
+
+{% render 'partials/foot.liquid', MultiplesnappsList: true %}
