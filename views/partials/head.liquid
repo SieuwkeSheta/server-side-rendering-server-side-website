@@ -61,7 +61,28 @@
       {% comment %} one-snappmap.liquid {% endcomment %}
       {% elsif OneSnappMap %}
         <header class="one-snappmap-top-navbar">
-          <h1>{{OneSnappMappInfo.name}}</h1>
+          {% comment %} Make variable of the header name {% endcomment %}
+          {% assign headerName = OneSnappMappInfo.name %}
+          
+          <details class="header-collapsible-list">
+            <summary><h1>{{OneSnappMappInfo.name}}</h1></summary>
+
+            {% comment %} List of names of other snappmaps in the same group {% endcomment %}
+            {% for groups in OneSnappMappInfo.groups %}
+              {% for snappmap in groups.snappthis_group_uuid.snappmap %}
+                {% comment %} Make variable of other snappmap names {% endcomment %}
+                {% assign listName = snappmap.snappthis_snapmap_uuid.name %}
+
+                {% comment %} Check if a name of other snappmap is not the same as the header name, if it's not than show the name {% endcomment %}
+                {% if snappmap.snappthis_snapmap_uuid.name != headerName %}
+                  <ul>
+                    <li><a href="/snappmaps/{{ snappmap.snappthis_snapmap_uuid.name }}">{{ snappmap.snappthis_snapmap_uuid.name }}</a></li>
+                  </ul> 
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </details>
+          
           <button>
             <svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" height="30">
               <title>Change gridsize</title>
