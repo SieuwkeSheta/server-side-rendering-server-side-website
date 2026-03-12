@@ -1,5 +1,5 @@
 {% for OneSnappMappInfo in OneSnappMappInfos %}
-    {% render 'partials/head.liquid', title: '', OneSnappMap: true, OneSnappMappInfo: OneSnappMappInfo %}
+    {% render 'partials/head.liquid', title: OneSnappMappInfo.name, OneSnappMap: true, OneSnappMappInfo: OneSnappMappInfo %}
 {% endfor %}
 
 {% for OneSnappMappInfo in OneSnappMappInfos %}
