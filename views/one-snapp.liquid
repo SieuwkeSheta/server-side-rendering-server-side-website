@@ -1,3 +1,5 @@
+{% render 'partials/head.liquid', title: 'Snapp', %}
+
 <header class="one-snapp-top-navbar">
     <a href="/snappmaps/{% for OneSnapp in OneSnapps%}{{OneSnapp.snapmap.name}}{% endfor %}">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" height="30">
@@ -54,7 +56,7 @@
     
     <a href="/snappmaps/{{OneSnapp.snapmap.name}}">{{OneSnapp.snapmap.name}}</a>
     <a href="#">{{OneSnapp.author.name}}</a>
-    <a href="#">{{ OneSnapp.location }}</a>
+    <a href="/snapps/location/{{ OneSnapp.location }}">{{ OneSnapp.location }}</a>
     <p>{{ OneSnapp.date_created | date: "%d %B %Y %H:%M" }}</p>
 {% endfor %}
 
