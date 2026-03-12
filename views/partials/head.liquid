@@ -92,14 +92,15 @@
         </header>
       
       {% comment %} snapps.liquid {% endcomment %}
-      {% elsif MultipleSnapps %}
+      {% elsif path %}
         <header class="snapps-top-navbar">
           <h1>Snapps</h1>
-          <button>
-            <svg height="30" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-              <title>Add Snappmap</title>
-              <path id="Shape" fill-rule="evenodd" clip-rule="evenodd" d="M36 20.5714H20.5714V36H15.4286V20.5714H0V15.4286H15.4286V0H20.5714V15.4286H36V20.5714V20.5714Z" fill=""/>
-            </svg>
-          </button>
+        </header>
+      {% elsif pathLocation %}
+        <header class="snapps-top-navbar">
+          {% for OneSnapp in MultipleSnapps limit: 1 %}
+            <h1>{{ OneSnapp.location}}</h1>
+          {% endfor %}
+          
         </header>
     {% endif %}
