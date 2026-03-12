@@ -1,5 +1,5 @@
 {% for OneSnappMap in SnappMapslist %}
-    {% render 'partials/head.liquid',  title: 'Snappmaps', OneGroup: true, OneSnappMap: OneSnappMap%}
+    {% render 'partials/head.liquid',  title: OneSnappMap.name, OneGroup: true, OneSnappMap: OneSnappMap%}
 {% endfor %}
 
 {% for OneSnappMap in SnappMapslist %}
