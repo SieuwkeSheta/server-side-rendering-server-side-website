@@ -98,6 +98,17 @@ app.get('/snapps', async function (request, response) {
   response.render('snapps.liquid', { MultipleSnapps: MultipleSnappsApiResponseJSON.data, path: request.path })
 })
 
+// Maak een GET route voor alle snapps in de database op locatie
+app.get('/snapps/location/:location', async function (request, response) {
+
+  const MultipleSnappsApiResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snap?fields=*,snapmap.groups.snappthis_group_uuid.name&filter[picture][_neq]=null&filter[location]=' + request.params.location)
+  const MultipleSnappsApiResponseJSON = await MultipleSnappsApiResponse.json()
+
+  // Geef hier eventueel data aan mee
+  response.render('snapps.liquid', { MultipleSnapps: MultipleSnappsApiResponseJSON.data,  pathLocation: request.path})
+})
+
+
 // Maak een GET route voor one-snapp in de database
 app.get('/snapps/:uuid', async function (request, response) {
 
