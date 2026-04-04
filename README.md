@@ -40,7 +40,7 @@ gespreksonderwerpen en inspiratie uit de echte wereld.
 >*Ontwerp van een snappmap met het thema 'Sunsets'*
 
 ## Kenmerken
-Ik gebruik gemaakt van HTML, CSS, JS, NodeJS, Express, JSON en Liquid. 
+Ik heb gebruik gemaakt van HTML, CSS, JS, NodeJS, Express, JSON en Liquid. 
 
 Voor het ophalen en posten van data gebruiken we NodeJS, dat is een server-side software waarmee je dynamische websites kunt maken. De opgehaalde data wordt vanuit een object uitgelezen met [Liquid](https://github.com/SieuwkeSheta/server-side-rendering-server-side-website/blob/9d6c5484a47c021c376a560aebaaa4c179222a6e/views/groups.liquid#L23) in de HTML.
 
